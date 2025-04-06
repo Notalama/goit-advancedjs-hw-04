@@ -48,6 +48,12 @@ loadMoreBtn.addEventListener('click', async () => {
 });
 
 async function handleImageRequest(isLoadMore = false) {
+  if (!isLoadMore) {
+    clearGallery();
+    loadedImages = 0;
+    totalHits = 0;
+    loadMoreBtn.classList.add('hidden');
+  }
   toggleLoader(true);
   try {
     const data = await fetchImages(currentQuery);
