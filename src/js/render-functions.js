@@ -24,4 +24,19 @@ export function renderImages(images) {
     .join('');
 
   gallery.insertAdjacentHTML('beforeend', markup);
+  smoothScroll();
+}
+
+function smoothScroll() {
+  const firstCard = document.querySelector('.gallery-item');
+  if (firstCard) {
+    setTimeout(() => {
+      const cardHeight = firstCard.getBoundingClientRect().height;
+      window.scrollBy({
+        top: cardHeight * 4,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }, 100);
+  }
 }
