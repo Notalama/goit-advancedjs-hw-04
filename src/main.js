@@ -48,12 +48,6 @@ loadMoreBtn.addEventListener('click', async () => {
 });
 
 async function handleImageRequest(isLoadMore = false) {
-  if (!isLoadMore) {
-    clearGallery();
-    loadedImages = 0;
-    totalHits = 0;
-    loadMoreBtn.classList.add('hidden');
-  }
   toggleLoader(true);
   try {
     const data = await fetchImages(currentQuery);
@@ -83,6 +77,10 @@ async function handleImageRequest(isLoadMore = false) {
         position: 'topLeft',
       });
     }
+
+    if (isLoadMore) {
+      smoothScroll();
+    }
   } catch (error) {
     toggleLoader(false);
     iziToast.error({
@@ -95,4 +93,12 @@ async function handleImageRequest(isLoadMore = false) {
 function toggleLoader(show) {
   loader.classList.toggle('hidden', !show);
   loadMoreBtn.classList.toggle('hidden', show);
+}
+
+function smoothScroll() {
+  const firstCard = document.querySelector('.gallery-item');
+  if (firstCard) {
+    const cardHeight = firstCard.getBoundingClientRect().height;
+    window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
+  }
 }
