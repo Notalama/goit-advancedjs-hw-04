@@ -9,8 +9,8 @@
 @import url('./base.css');
 @import url('./container.css');
 @import url('./animations.css');
+@import url('./buttons.css');
 
-/* Sections style */
-@import url('./header.css');
-@import url('./1-task.css');
-/* @import url('./2-task.css'); */
+@import url('./form.css');
+@import url('./gallery.css');
+@import url('./loader.css');
